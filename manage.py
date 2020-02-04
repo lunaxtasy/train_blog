@@ -3,8 +3,8 @@
 import os
 import sys
 
-
 def main():
+    """declares settings.py as source for blog's settings"""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'train_blog.settings')
     try:
         from django.core.management import execute_from_command_line
