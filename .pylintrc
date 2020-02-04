@@ -15,6 +15,7 @@ disable=
     no-self-use,
     redefined-outer-name,  # pytest fixtures
     too-few-public-methods,  # dataclasses & models
+    unused-argument
 
 [DESIGN]
 max-parents=13
