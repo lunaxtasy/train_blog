@@ -16,12 +16,16 @@ class Comment(models.Model):
     Defines layout for comments on a blog post
     """
 
-    title = ("Comments and concerns")
-    post = models.ManyToManyField("Post", related_name="comments")
+    post = models.ForiegnKey(
+        'Post',
+        on_delete=models.PROTECT
+        related_name="comments",
+        null=True,
+    )
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=254)
     text = models.TextField()
-    #approved = models.BooleanField(required=True)
+    approved = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
