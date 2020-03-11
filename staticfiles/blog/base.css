@@ -1,0 +1,78 @@
+/* blog/static/blog/base.css */
+
+html {
+  height: 100%; /* uses full height of browser */
+}
+
+body {
+  display: grid; /* uses CSS grid */
+  background-color: #afeeee;
+  font-family: Arial, Helvetica, sans-serif;
+  grid-template-rows: auto auto 1fr auto; /* sticky footer */
+  margin: 0 auto; /* page is centered */
+  max-width: 1000px; /* maximum page width */
+  min-height: 100%; /* full height */
+  padding: 1rem;
+}
+
+/*
+ * Stylises <a> tags with consistent colour for both visited and unvisited links
+ * Underline visible when hovering mouse over only
+ */
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Make the header area look pretty */
+#site-header h1 {
+  background-color: #ffffff;
+  padding: 0;
+  margin: 0;
+}
+
+#site-header p {
+  background-color: #ffffff;
+  font-size: 0.9rem;
+  color: #666;
+  padding: 0;
+  margin: 0;
+}
+
+/* Making the top navigation bar look pretty */
+#top-nav {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+#top-nav ul {
+  margin: 1;
+  padding: 0;
+}
+
+#top-nav li {
+  margin-top: 0.5rem;
+  list-style-type: none;
+  display: inline-block;
+  padding-right: 1rem;
+}
+
+#top-nav a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* stylises main content */
+#main-content {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Stylises footer */
+#site-footer {
+  font-size: 0.9rem;
+}
