@@ -119,8 +119,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_ROOT = os.path.normpath('C:/Users/inora/projects/train_blog/blog/static')
-STATIC_URL = '/static'
+STATIC_URL = '/static/'
+
 """
+resolving collectstatic issue
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, '/blog/static'),
     '/blog/static',

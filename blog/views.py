@@ -12,11 +12,12 @@ def home(request):
     """
     #Get last 3 posts
     latest_posts = models.Post.objects.published().order_by('-published')[:3]
-    topical = models.Post.objects.get_topics()
+    #Get list of topics
+    topics = models.Post.objects.get_topics()
 
     #Add context variable "latest_posts"
     context = {
-        'topics' : topical,
+        'topics' : topics,
         'latest_posts': latest_posts
     }
 

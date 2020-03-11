@@ -6,7 +6,7 @@ html {
 
 body {
   display: grid; /* uses CSS grid */
-  background-color: #afeeee;
+  background-color: #afeeee; /*light blue background */
   font-family: Arial, Helvetica, sans-serif;
   grid-template-rows: auto auto 1fr auto; /* sticky footer */
   margin: 0 auto; /* page is centered */
@@ -20,7 +20,7 @@ body {
  * Underline visible when hovering mouse over only
  */
 a {
-  color: #0366d6;
+  color: #ff0000;
   text-decoration: none;
 }
 
@@ -30,13 +30,20 @@ a:hover {
 
 /* Make the header area look pretty */
 #site-header h1 {
-  background-color: #ffffff;
+  background-color: #ffffff; /*sets to white, haven't decided on final colour y et */
+  padding: 0;
+  margin: 0;
+}
+
+#site-header h2 {
+  font-size: 50%;
+  background-color: #ffffff; /*sets to white, haven't decided on final colour y et */
   padding: 0;
   margin: 0;
 }
 
 #site-header p {
-  background-color: #ffffff;
+  background-color: #ffffff; /*sets to white, haven't decided on final colour y et */
   font-size: 0.9rem;
   color: #666;
   padding: 0;
@@ -45,8 +52,9 @@ a:hover {
 
 /* Making the top navigation bar look pretty */
 #top-nav {
+  text-align: center;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 10px solid #000;
 }
 
 #top-nav ul {
@@ -62,7 +70,7 @@ a:hover {
 }
 
 #top-nav a {
-  text-decoration: none;
+  text-decoration: underline;
   font-weight: bold;
 }
 
@@ -70,6 +78,7 @@ a:hover {
 #main-content {
   margin-top: 1rem;
   margin-bottom: 2rem;
+  border-bottom: 10px solid #000;
 }
 
 /* Stylises footer */

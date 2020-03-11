@@ -13,7 +13,9 @@
 <body>
   <!-- Header -->
   <header id="site-header">
-    <h1>Rail Tales - or how I've watched too much Thomas</h1>
+    <h1>Rail Tales</h1>
+      <linebreak>
+      <h2>or how I've watched too much Thomas</h2>
     <p>A blog about 18 months of Thomas the Tank Engine</p>
   </header>
 
@@ -28,18 +30,21 @@
   </nav>
 
   <main id="main-content">
+    <!-- Addition of side bar to main body of page-->
     <aside id="sidebar">
       <section id="topic-list">
+        <!-- List of topics, code not working correctly for display -->
         <h3>Topics</h3>
           <ul>
-          {% for topic in topics %}
-            <li>topic.name</li>
-          {% endfor %}
+            {% for topic in topics %}
+              <li>topic.name</li>
+            {% endfor %}
           </ul>
       </section>
     </aside>
 
     <div>
+      <!-- display of blog posts in this section -->
       {% block main %}
       <!-- Content for the main block to be rendered here -->
       {% endblock %}

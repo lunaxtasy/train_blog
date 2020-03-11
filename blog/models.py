@@ -8,35 +8,45 @@ from django.db import models
 
 # Create your models here.
 class Topic(models.Model):
+    """
+    Defines layout for giving posts topics. M2M with Post model
+    """
     #objects = TopicQuerySet.as_manager()
+    #Topic name
     name = models.CharField(
         max_length=50,
         unique=True, #eliminates duplicate topics
     )
+    #The slug, must be unique
     slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.name
 
+    #Alphabetical order
     class Meta:
         ordering = ['name']
 
 class PostQuerySet(models.QuerySet):
+    """
+    Querysets for accessing data
+    """
+    #Defines published post
     def published(self):
         return self.filter(status=self.model.PUBLISHED)
-
+    #Defines draft post
     def draft(self):
         return self.filter(status=self.model.DRAFT)
-
+    #Counts number of comments per post
     def comments(self):
         return self.annotate(comment_count=Count('comments'))
-
+    #Gets unique authors
     def get_authors(self):
         User = get_user_model()
         return User.objects.filter(train_blog__in=self).distinct()
-
+    #Gets topics
     def get_topics(self):
-        return Topic.objects.all().distinct() #.values_list('blog_posts', flat=True)
+        return Topic.objects.all().distinct() #.values_list('blog_topic', flat=True)
 
 class Post(models.Model):
     """
@@ -77,9 +87,10 @@ class Post(models.Model):
     )
     #The actual post
     content = models.TextField()
+    #The post's topic
     topics = models.ManyToManyField(
         Topic,
-        related_name='blog_posts',
+        related_name='blog_topic',
     )
     #Publishing day and time
     published = models.DateTimeField(
