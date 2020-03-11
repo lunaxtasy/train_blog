@@ -1,0 +1,9 @@
+/* blog/static/blog/global.css */
+/* ...*/
+#main-content {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 200px auto;
+  color: #ff0000 #000000
+}
+/* ... */

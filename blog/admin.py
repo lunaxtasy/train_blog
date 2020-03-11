@@ -54,6 +54,7 @@ class PostAdmin(admin.ModelAdmin):
         'status',
         'created',
         'updated',
+        'published',
     )
     #searchable fields
     search_fields = (
@@ -61,14 +62,25 @@ class PostAdmin(admin.ModelAdmin):
         'author__username',
         'author__first_name',
         'author__last_name',
+        'published',
     )
     #filter for draft/published status
     list_filter = (
         'status',
+        'topics',
+        'published',
     )
     prepopulated_fields = {'slug':('title',)}
     #brings in Comment model for each post
     inlines = [CommentInline]
+
+@admin.register(models.Topic)
+class TopicAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'slug',
+    )
+    prepopulated_fields = {'slug': ('name',)}
 
 # Register your models here.
 admin.site.register(models.Post, PostAdmin)

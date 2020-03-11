@@ -5,8 +5,6 @@ from blog.models import Comment, Post
 
 User = get_user_model()
 
-
-
 def question_1_return_active_users():
     """
     Return the results of a query which returns a list of all
@@ -26,8 +24,10 @@ def question_3_return_all_posts_for_user(user):
     Return all the Posts authored by the user provided. Posts should
     be returned in reverse chronological order from when they
     were created.
+
+    Original attempt: return Post.objects.filter(author_id=1).order_by('-created')
     """
-    return Post.objects.filter(author_id=1).order_by('-created')
+    return Post.objects.filter(author=user).order_by('-created')
 
 def question_4_return_all_posts_ordered_by_title():
     """
@@ -39,8 +39,10 @@ def question_5_return_all_post_comments(post):
     """
     Return all the comments made for the post provided in order
     of last created.
+
+    Original attempt: return Comment.objects.filter(post_id=3).order_by('-created')
     """
-    return Comment.objects.filter(post_id=3).order_by('-created')
+    return Comment.objects.filter(post=post).order_by('-created')
 
 def question_6_get_approved_comments_from_queryset():
     """
@@ -50,8 +52,11 @@ def question_6_get_approved_comments_from_queryset():
     test pass.
 
     Not finished, did attempt
+
+    Original attempt: Comment = apps.get_model('blog', 'Comment')
+    return Comment.objects.approved()
     """
-    Comment = apps.get_model('blog', 'Comment')
+    approved = blog.apps.get_model('blog', 'Comment')
     return Comment.objects.approved()
 
 
@@ -72,15 +77,17 @@ def question_8_return_the_post_with_the_most_comments():
     return the object which has generated the most activity.
 
     Not finished, did attempt
-    """
-    comment_count = Comment.objects.annotate(Sum(post_id=1))
+
+    Original attempt: comment_count = Comment.objects.annotate(Sum(post_id=1))
     return Comment.objects.filter(post).get()
+    """
+    return Post.objects.annotate(Sum('comments')).order_by('-comments')[0]
 
 def question_9_create_a_comment(post):
     """
     Create and return a comment for the post object provided.
     """
-    return Comment.objects.create(post_id=1)
+    return Comment.objects.create(post=post)
 
 def question_10_set_approved_to_false(comment):
     """
@@ -93,5 +100,7 @@ def question_11_delete_post_and_all_related_comments(post):
     Delete the post object provided, and all related comments.
 
     Not finished, did attempt
+
+    Original attempt: Comment.objects.filter(post_id=0).delete()
     """
-    return Comment.objects.filter(post_id=0).delete()
+    return post.delete()

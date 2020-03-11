@@ -1,0 +1,55 @@
+<!-- blog/templates/blog/base.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{% static "blog/base.css" %}">
+  <link rel="stylesheet" href="{% static "blog/global.css" %}">
+  <title>Rail Tales - {% block page_title %}The British Model Trains Blog{% endblock %}</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <header id="site-header">
+    <h1>Rail Tales - or how I've watched too much Thomas</h1>
+    <p>A blog about 18 months of Thomas the Tank Engine</p>
+  </header>
+
+  <!-- Top navigation -->
+  <nav id="top-nav">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Posts</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <aside id="sidebar">
+      <section id="topic-list">
+        <h3>Topics</h3>
+          <ul>
+          {% for topic in topics %}
+            <li>topic.name</li>
+          {% endfor %}
+          </ul>
+      </section>
+    </aside>
+
+    <div>
+      {% block main %}
+      <!-- Content for the main block to be rendered here -->
+      {% endblock %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="site-footer">
+    <!-- print copyright with current year -->
+    Copyright &copy;{% now "Y" %}
+  </footer>
+</body>
+</html>

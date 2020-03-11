@@ -1,7 +1,43 @@
+from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.db import models
 
+"""class TopicQuerySet(models.QuerySet):
+    def get_topics(self):
+        return self.filter(topics_id = name)"""
+
 # Create your models here.
+class Topic(models.Model):
+    #objects = TopicQuerySet.as_manager()
+    name = models.CharField(
+        max_length=50,
+        unique=True, #eliminates duplicate topics
+    )
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+
+class PostQuerySet(models.QuerySet):
+    def published(self):
+        return self.filter(status=self.model.PUBLISHED)
+
+    def draft(self):
+        return self.filter(status=self.model.DRAFT)
+
+    def comments(self):
+        return self.annotate(comment_count=Count('comments'))
+
+    def get_authors(self):
+        User = get_user_model()
+        return User.objects.filter(train_blog__in=self).distinct()
+
+    def get_topics(self):
+        return Topic.objects.all().distinct() #.values_list('blog_posts', flat=True)
+
 class Post(models.Model):
     """
     Defines layout for a blog post. Pulled from course notes
@@ -12,6 +48,11 @@ class Post(models.Model):
         (DRAFT, 'Draft'),
         (PUBLISHED, 'Published')
     ]
+
+    def publish(self):
+        self.status = self.PUBLISHED
+
+    objects = PostQuerySet.as_manager()
     #Title of the actual blog post
     title = models.CharField(max_length=255)
     #Slug path for future URL
@@ -36,6 +77,10 @@ class Post(models.Model):
     )
     #The actual post
     content = models.TextField()
+    topics = models.ManyToManyField(
+        Topic,
+        related_name='blog_posts',
+    )
     #Publishing day and time
     published = models.DateTimeField(
         null=True,
@@ -85,12 +130,6 @@ class Comment(models.Model):
     )
     #Allows staff to decide if comment will be publicly visible or not
     approved = models.BooleanField(default=True)
-    """
-    attempt at Q6 of Part 3 of Assignment 2 (unfinished)
-    def approved(self):
-        queryset = super().approved()
-        return queryset.exclude(approved=False)
-    """
     #Date/time comment is first created
     created = models.DateTimeField(auto_now_add=True)
     #Date/time comment has been updated
