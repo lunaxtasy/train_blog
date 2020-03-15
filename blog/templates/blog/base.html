@@ -32,12 +32,21 @@
   <main id="main-content">
     <!-- Addition of side bar to main body of page-->
     <aside id="sidebar">
+      <section id="author-list">
+        <!-- List of topics, code not working correctly for display -->
+        <h3>Authors</h3>
+          <ul>
+            {% for author in authors %}
+              <li>{{ author.get_full_name }}</li>
+            {% endfor %}
+          </ul>
+      </section>
       <section id="topic-list">
         <!-- List of topics, code not working correctly for display -->
         <h3>Topics</h3>
           <ul>
             {% for topic in topics %}
-              <li>topic.name</li>
+              <li>{{ topic.name }}</li>
             {% endfor %}
           </ul>
       </section>
