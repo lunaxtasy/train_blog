@@ -74,6 +74,21 @@ a:hover {
   font-weight: bold;
 }
 
+/* Post preview */
+.post-preview {
+  border-bottom: 1px #eee solid;
+}
+.post-preview h2 {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.post-preview time {
+  color: #999;
+}
+.post-preview section {
+  margin: 1rem 0;
+}
+
 /* stylises main content */
 #main-content {
   margin-top: 1rem;

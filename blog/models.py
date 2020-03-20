@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 """class TopicQuerySet(models.QuerySet):
     def get_topics(self):
@@ -61,6 +62,19 @@ class Post(models.Model):
 
     def publish(self):
         self.status = self.PUBLISHED
+
+    def get_absolute_url(self):
+        if self.published:
+            kwargs={
+                'year': self.published.year,
+                'month': self.published.month,
+                'day': self.published.day,
+                'slug': self.slug,
+            }
+        else:
+            kwargs = {'pk': self.pk}
+
+        return reverse('post-detail', kwargs=kwargs)
 
     objects = PostQuerySet.as_manager()
     #Title of the actual blog post

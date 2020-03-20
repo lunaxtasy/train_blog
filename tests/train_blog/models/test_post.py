@@ -1,4 +1,5 @@
 from model_mommy import mommy
+import datetime as dt
 import pytest
 
 from blog.models import Post, Comment, Topic
@@ -53,3 +54,44 @@ def test_get_topics_return_list_of_topics():
     mommy.make('blog.Post')
 
     assert list(Post.objects.get_topics()) == [topics]
+
+def test_post_list_only_returns_published_articles(client):
+    published = mommy.make(
+        'blog.Post',
+        status=Post.PUBLISHED,
+        title='Published post'
+    )
+    mommy.make(
+        'blog.Post',
+        status=Post.DRAFT,
+        title='Draft post'
+    )
+
+    response = client.get('/posts/')
+    #Get the posts object_list
+    result = response.context.get('posts')
+
+    assert list(result) == [published]
+
+def test_get_absolute_url_post_published_date():
+    """
+    Checks date and slug in URL
+    """
+    post = mommy.make(
+        'blog.Post',
+        published=dt.datetime(2014, 12, 20, tzinfo=dt.timezone.utc),
+        slug='model-instances',
+    )
+
+    assert post.get_absolute_url() == '/posts/2014/12/20/model-instances/'
+
+def test_get_absolute_url_no_publish_date_slug():
+    """
+    Checks URL without date or slug
+    """
+    post = mommy.make(
+        'blog.Post',
+        published=None,
+    )
+
+    assert post.get_absolute_url() == f'/posts/{post.pk}/'

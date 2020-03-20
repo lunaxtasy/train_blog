@@ -22,9 +22,9 @@
   <!-- Top navigation -->
   <nav id="top-nav">
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Posts</a></li>
+      <li><a href="{% url "home" %}">Home</a></li>
+      <li><a href="{% url "about" %}">About</a></li>
+      <li><a href="{% url "post-list" %}">Posts</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>
@@ -63,7 +63,8 @@
   <!-- Footer -->
   <footer id="site-footer">
     <!-- print copyright with current year -->
-    Copyright &copy;{% now "Y" %}
+    Copyright &copy;{% now "Y" %} -
+    <a href="{% url "terms-and-conditions" %}">Terms & Conditions</a>
   </footer>
 </body>
 </html>
