@@ -26,6 +26,9 @@ class PostDetailView(DetailView):
             published__day=self.kwargs['day'],
         )
 
+class TopicDetailView(DetailView):
+    model = models.Topic
+
 class HomeView(TemplateView):
     template_name = 'blog/home.html'
 
@@ -45,6 +48,11 @@ class PostListView(ListView):
     model = models.Post
     context_object_name = 'posts'
     queryset = models.Post.objects.published().order_by('-published')
+
+class TopicListView(ListView):
+    model = models.Topic
+    context_object_name = 'top_topic'
+    queryset = models.Topic.objects.all().order_by('name')
 
 def terms_and_conditions(request):
     return render(request, 'blog/terms_and_conditions.html')

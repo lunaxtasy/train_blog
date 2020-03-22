@@ -1,0 +1,16 @@
+<!--blog\templates\bloc\topic_list.html-->
+
+{% extends "blog/base.html "%}
+
+{% block page_title %}Topics{% endblock %}
+
+{% block main %}
+<h1>Topics</h1>
+{% for topic in top_topic %}
+  <article class="topic-preview"
+    <ul>
+      <li><a href="#">{{ topic.name }}</a><li>
+    </ul>
+  </article>
+{% endfor %}
+{% endblock %}

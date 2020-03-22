@@ -3,7 +3,7 @@
 #main-content {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: 200px auto;
+  grid-template-columns: 350px auto;
   color: #ff0000 #000000
 }
 /* ... */

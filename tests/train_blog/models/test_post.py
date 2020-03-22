@@ -1,4 +1,5 @@
 from model_mommy import mommy
+from django.db.models import Count
 import datetime as dt
 import pytest
 
@@ -54,6 +55,17 @@ def test_get_topics_return_list_of_topics():
     mommy.make('blog.Post')
 
     assert list(Post.objects.get_topics()) == [topics]
+
+def test_get_topics_count_topics():
+    """
+    Returns a count of how many posts for a topic
+    """
+    topics = mommy.make('blog.Topic', name='topic')
+    mommy.make('blog.Post', _quantity=2)
+
+    top_count = Post.objects.get_topics('topic_count')
+
+    assert top_count == [topics.topic_count]
 
 def test_post_list_only_returns_published_articles(client):
     published = mommy.make(

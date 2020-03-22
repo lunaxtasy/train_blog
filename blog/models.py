@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.db import models
+from django.db.models import Count
 from django.urls import reverse
 
 """class TopicQuerySet(models.QuerySet):
@@ -47,7 +48,7 @@ class PostQuerySet(models.QuerySet):
         return User.objects.filter(train_blog__in=self).distinct()
     #Gets topics
     def get_topics(self):
-        return Topic.objects.all().distinct() #.values_list('blog_topic', flat=True)
+        return Topic.objects.annotate(topic_count=Count('blog_topic')).order_by('-topic_count') #.distinct() #.values_list('blog_topic', flat=True)
 
 class Post(models.Model):
     """

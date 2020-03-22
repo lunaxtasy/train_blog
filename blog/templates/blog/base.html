@@ -24,6 +24,7 @@
     <ul>
       <li><a href="{% url "home" %}">Home</a></li>
       <li><a href="{% url "about" %}">About</a></li>
+      <li><a href="{% url "topic-list" %}">Topics</a></li>
       <li><a href="{% url "post-list" %}">Posts</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
@@ -43,10 +44,10 @@
       </section>
       <section id="topic-list">
         <!-- List of topics, code not working correctly for display -->
-        <h3>Topics</h3>
+        <h3>What everyone wants to read:</h3>
           <ul>
             {% for topic in topics %}
-              <li>{{ topic.name }}</li>
+              <li>{{ topic.name }} ({{ topic.topic_count }})</li>
             {% endfor %}
           </ul>
       </section>

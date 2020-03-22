@@ -34,4 +34,10 @@ urlpatterns = [
         views.PostDetailView.as_view(),
         name='post-detail',
     ),
+    path('topics/', views.TopicListView.as_view(), name='topic-list'),
+    path(
+        'topics/<slug:slug>/',
+        views.TopicDetailView.as_view(),
+        name='topic-detail',
+    ),
 ]
