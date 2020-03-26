@@ -18,16 +18,16 @@ def test_topic_list_published_only(client):
     Checks that only topics from published posts is being used
     """
     topics = mommy.make('blog.Topic', name='topic')
-    """published = mommy.make(
+    published = mommy.make(
         'blog.Post',
         status=Post.PUBLISHED,
-    )"""
+    )
     draft = mommy.make(
         'blog.Post',
         status=Post.DRAFT,
     )
 
     response = client.get('/topics/')
-    result = response.context.get('top_topic')
+    result = response.context.get('top_topics')
 
     assert list(result) == [topics]

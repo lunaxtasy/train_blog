@@ -14,13 +14,13 @@ class PostDetailView(DetailView):
 
     def get_queryset(self):
         #Get base queryset
-        queryset = super().get_queryset().published()
+        queryset = super().get_queryset()
 
         #For 'pk' look-up, uses default queryset
         if 'pk' in self.kwargs:
             return queryset
         #Filters published date for everything else
-        return queryset.filter(
+        return queryset.published().filter(
             published__year=self.kwargs['year'],
             published__month=self.kwargs['month'],
             published__day=self.kwargs['day'],
@@ -47,11 +47,11 @@ class AboutView(TemplateView):
 class PostListView(ListView):
     model = models.Post
     context_object_name = 'posts'
-    queryset = models.Post.objects.published().order_by('-published')
+    queryset = models.Post.objects.published().order_by('-published')[:10]
 
 class TopicListView(ListView):
     model = models.Topic
-    context_object_name = 'top_topic'
+    context_object_name = 'top_topics'
     queryset = models.Topic.objects.all().order_by('name')
 
 def terms_and_conditions(request):

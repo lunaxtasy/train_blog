@@ -45,7 +45,7 @@ class PostQuerySet(models.QuerySet):
     #Gets unique authors
     def get_authors(self):
         User = get_user_model()
-        return User.objects.filter(train_blog__in=self).distinct()
+        return User.objects.filter(author__in=self).distinct()
     #Gets topics
     def get_topics(self):
         return Topic.objects.annotate(topic_count=Count('blog_topic')).order_by('-topic_count') #.distinct() #.values_list('blog_topic', flat=True)
@@ -90,7 +90,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
-        related_name="train_blog",
+        related_name="author",
         null=True,
     )
     #Is it published? Yay or nay? Post must be set to published to be viewable
