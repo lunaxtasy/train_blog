@@ -1,4 +1,4 @@
-<!--blog/templates/blog/post_detail.html-->
+<!--blog/templates/blog/post_detail.html post.topics-->
 {% extends "blog/base.html" %}
 
 {% block page_title %}{{ post.title }}{% endblock %}
@@ -8,6 +8,12 @@
   <h1>{{ post.title }}</h1>
   <span class="published">Published <time>{{ post.published }}</time></span><br>
   <span class="author">{{ post.author.get_full_name }}</span>
+  <p>
+  <span class="topic">Topics:
+    {% for topic in post.topics.all %}
+      <a href="{{topic.get_absolute_url}}">{{ topic }}</a>
+    {% endfor %}
+  </span>
 
   <section class="content">{{ post.content|linebreaks }}</section>
 </article>

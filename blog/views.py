@@ -28,6 +28,26 @@ class PostDetailView(DetailView):
 
 class TopicDetailView(DetailView):
     model = models.Topic
+    context_object_name = 'top_topic'
+
+    def get_context_data(self, **kwargs):
+        topic_list = super(TopicDetailView, self).get_context_data(**kwargs)
+        topic_list['options'] = models.Post.objects.filter(topics=self.get_object())
+        return topic_list
+
+    """def get_queryset(self):
+        #Get base queryset
+        queryset = super().get_queryset()
+
+        #For 'pk' look-up, uses default queryset
+        if 'pk' in self.kwargs:
+            return queryset
+        #Filters published date for everything else
+        return queryset.published().filter(
+            published__year=self.kwargs['year'],
+            published__month=self.kwargs['month'],
+            published__day=self.kwargs['day'],
+        )"""
 
 class HomeView(TemplateView):
     template_name = 'blog/home.html'

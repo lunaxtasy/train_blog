@@ -40,4 +40,9 @@ urlpatterns = [
         views.TopicDetailView.as_view(),
         name='topic-detail',
     ),
+    path(
+        'topics/<int:pk>/',
+        views.TopicDetailView.as_view(),
+        name='topic-detail',
+    ),
 ]

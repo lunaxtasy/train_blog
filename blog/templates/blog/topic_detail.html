@@ -1,3 +1,18 @@
 <!--blog/templates/blog/topic_detail.html-->
 
 {% extends "blog/base.html" %}
+
+{% block page_title %}{{ top_topic.name }}{% endblock %}
+
+{% block main %}
+<article id="topic-detail-article">
+  <h1>{{ top_topic.name }}</h1>
+
+  {% for topic in top_topics %}
+    <h2>{{ topic.name }}</h2>
+    {% for entry in topic.blogtopic_set.all %}
+      {{ entry.title }}
+    {% endfor %}
+  {% endfor %}
+</article>
+{% endblock %}

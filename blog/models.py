@@ -13,6 +13,15 @@ class Topic(models.Model):
     """
     Defines layout for giving posts topics. M2M with Post model
     """
+
+    def get_absolute_url(self):
+        if Post.published:
+            kwargs={'slug': self.slug}
+        else:
+            kwargs={'pk': self.pk}
+
+        return reverse('topic-detail', kwargs=kwargs)
+
     #objects = TopicQuerySet.as_manager()
     #Topic name
     name = models.CharField(
@@ -48,7 +57,7 @@ class PostQuerySet(models.QuerySet):
         return User.objects.filter(author__in=self).distinct()
     #Gets topics
     def get_topics(self):
-        return Topic.objects.annotate(topic_count=Count('blog_topic')).order_by('-topic_count') #.distinct() #.values_list('blog_topic', flat=True)
+        return Topic.objects.annotate(topic_count=Count('blogtopic')).order_by('-topic_count') #.distinct() #.values_list('blogtopic', flat=True)
 
 class Post(models.Model):
     """
@@ -105,7 +114,7 @@ class Post(models.Model):
     #The post's topic
     topics = models.ManyToManyField(
         Topic,
-        related_name='blog_topic',
+        related_name='blogtopic',
     )
     #Publishing day and time
     published = models.DateTimeField(

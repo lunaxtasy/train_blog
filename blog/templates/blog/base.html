@@ -47,7 +47,7 @@
         <h3>What everyone wants to read:</h3>
           <ul>
             {% for topic in topics %}
-              <li>{{ topic.name }} ({{ topic.topic_count }})</li>
+              <li><a href="{{ topic.get_absolute_url }}">{{ topic.name }}</a> ({{ topic.topic_count }})</li>
             {% endfor %}
           </ul>
       </section>
