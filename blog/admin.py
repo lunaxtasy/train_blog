@@ -76,6 +76,9 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(models.Topic)
 class TopicAdmin(admin.ModelAdmin):
+    """
+    Does for the Topic model what CommentAdmin does for the Comment model
+    """
     list_display = (
         'name',
         'slug',

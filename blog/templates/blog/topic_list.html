@@ -6,7 +6,8 @@
 
 {% block main %}
 <h1>Topics</h1>
+<!--Gets all names of topics in database-->
 {% for topic in top_topics %}
-  <li><a href="{{topic.get_absolute_url}}">{{ topic.name }}</a><li>
+  <ul><a href="{{topic.get_absolute_url}}">{{ topic.name }}</a></ul>
 {% endfor %}
 {% endblock %}

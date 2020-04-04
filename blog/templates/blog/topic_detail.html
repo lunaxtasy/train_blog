@@ -7,12 +7,15 @@
 {% block main %}
 <article id="topic-detail-article">
   <h1>{{ top_topic.name }}</h1>
-
-  {% for topic in top_topics %}
-    <h2>{{ topic.name }}</h2>
-    {% for entry in topic.blogtopic_set.all %}
-      {{ entry.title }}
-    {% endfor %}
+  <!--Display information for all accessed posts-->
+  {% for post in top_topic.blogtopic.all %}
+    <ul><h3>{{post.title}}</h3></ul>
+    <span class="published">Published: <time>{{ post.published }}</time></span><br>
+    <span class="author">Author: {{ post.author.get_full_name }}</span>
+    <p>
+    <section class="content">{{ post.content|linebreaks }}</section>
+    <!--Forwards to actual post-->
+    <p><a href="{{ post.get_absolute_url }}">Read more &rarr; </a></p>
   {% endfor %}
 </article>
 {% endblock %}

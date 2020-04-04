@@ -13,7 +13,7 @@ class Topic(models.Model):
     """
     Defines layout for giving posts topics. M2M with Post model
     """
-
+    #Defines selected topic
     def get_absolute_url(self):
         if Post.published:
             kwargs={'slug': self.slug}
@@ -22,7 +22,6 @@ class Topic(models.Model):
 
         return reverse('topic-detail', kwargs=kwargs)
 
-    #objects = TopicQuerySet.as_manager()
     #Topic name
     name = models.CharField(
         max_length=50,
