@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '++&0aq4&%an@^@oyg7&w#+_@1$(ptumf_zqpw%rl-n-5zojcsp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get('DEBUG', '1'))
 
 ALLOWED_HOSTS = ['*']
 
@@ -124,6 +124,15 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AWS_LOCATION = 'mx5worjmcbes/public/'
+AWS_STORAGE_BUCKET_NAME = 'https://cloud-cube.s3.amazonaws.com/mx5worjmcbes'
+AWS_ACCESS_KEY_ID = os.environ.get('AKIA37SVVXBH5W34BB4E')
+AWS_SECRET_ACCESS_KEY = os.environ.get('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')
+
+#Cloud storage usage ok if credentials sets
+if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 """
 resolving collectstatic issue

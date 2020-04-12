@@ -102,6 +102,11 @@ class Post(models.Model):
 
         return reverse('post-detail', kwargs=kwargs)
 
+    banner = models.ImageField(
+        blank=True,
+        null=True,
+        help_text='Post\'s banner image'
+    )
     objects = PostQuerySet.as_manager()
     #Title of the actual blog post
     title = models.CharField(max_length=255)
