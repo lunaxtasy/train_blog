@@ -19,6 +19,6 @@
     <img src="{{ post.banner.url }}" width="100%" alt="Banner image">
   {% endif %}
   <p>
-  <section class="content">{{ post.content|linebreaks }}</section>
+  <section class="content">{{ post.content|safe }}</section>
 </article>
 {% endblock %}

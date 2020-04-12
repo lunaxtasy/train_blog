@@ -3,6 +3,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models import Count
 from django.urls import reverse
+from ckeditor_uploader.fields import RichTextUploadingField
 
 """class TopicQuerySet(models.QuerySet):
     def get_topics(self):
@@ -131,7 +132,7 @@ class Post(models.Model):
         help_text='Set to "published" to make visible'
     )
     #The actual post
-    content = models.TextField()
+    content = RichTextUploadingField()
     #The post's topic
     topics = models.ManyToManyField(
         Topic,

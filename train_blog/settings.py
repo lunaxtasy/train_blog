@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -134,10 +136,6 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('t0NAh2RtPJD4IU7SfBvWmnoi9IvPvjqYTzVRl723
 if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-"""
-resolving collectstatic issue
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '/blog/static'),
-    '/blog/static',
-]"""
+MOMMY_CUSTOM_CLASS = 'tests.mommy.CustomMommy'
