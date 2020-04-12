@@ -122,6 +122,9 @@ USE_TZ = True
 STATIC_ROOT = os.path.normpath('C:/Users/inora/projects/train_blog/blog/static')
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 """
 resolving collectstatic issue
 

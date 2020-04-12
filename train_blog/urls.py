@@ -45,4 +45,5 @@ urlpatterns = [
         views.TopicDetailView.as_view(),
         name='topic-detail',
     ),
+    path('contact/', views.ContactFormView.as_view(), name='contact'),
 ]

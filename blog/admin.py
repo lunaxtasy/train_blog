@@ -85,6 +85,26 @@ class TopicAdmin(admin.ModelAdmin):
     )
     prepopulated_fields = {'slug': ('name',)}
 
+@admin.register(models.Contact)
+class ContactAdmin(admin.ModelAdmin):
+    """
+    Does for the Contact model what CommentAdmin does for the Comment model
+    """
+    list_display = (
+        'email',
+        'last_name',
+        'first_name',
+        'submitted'
+    )
+    #Making everything listed in list_display read-only
+    readonly_fields = (
+        'first_name',
+        'last_name',
+        'email',
+        'message',
+        'submitted'
+    )
+
 # Register your models here.
 admin.site.register(models.Post, PostAdmin)
 admin.site.register(models.Comment, CommentAdmin)

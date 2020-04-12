@@ -1,7 +1,9 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from django.views.generic import ListView, DetailView
-from . import models
+from django.views.generic import ListView, DetailView, FormView, CreateView
+from django.urls import reverse_lazy
+from . import forms, models
 
 # Create your views here.
 """
@@ -40,6 +42,24 @@ class TopicDetailView(DetailView):
     def get_object(self, queryset=None):
         obj = super(TopicDetailView, self).get_object(queryset=queryset)
         return obj
+
+class ContactFormView(CreateView):
+    model = models.Contact
+    success_url = reverse_lazy('home')
+    fields = [
+        'first_name',
+        'last_name',
+        'email',
+        'message',
+    ]
+
+    def form_valid(self, form):
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'Thank you! Your message has been sent.'
+        )
+        return super().form_valid(form)
 
 class HomeView(TemplateView):
     """
