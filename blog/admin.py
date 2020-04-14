@@ -116,13 +116,13 @@ class ContestAdmin(admin.ModelAdmin):
         'last_name',
         'submitted',
     )
-    """Making everything listed in list_display read-only
+    """Making everything listed in list_display read-only"""
     readonly_fields = (
         'first_name',
         'last_name',
         'email',
         'submitted',
-    )"""
+    )
     #searchable fields
     search_fields = (
         'first_name',
