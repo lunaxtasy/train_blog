@@ -105,6 +105,39 @@ class ContactAdmin(admin.ModelAdmin):
         'submitted'
     )
 
+@admin.register(models.Contest)
+class ContestAdmin(admin.ModelAdmin):
+    """
+    Does for the Contest model what CommentAdmin does for the Comment model
+    """
+    list_display = (
+        'email',
+        'first_name',
+        'last_name',
+        'submitted',
+    )
+    """Making everything listed in list_display read-only
+    readonly_fields = (
+        'first_name',
+        'last_name',
+        'email',
+        'submitted',
+    )"""
+    #searchable fields
+    search_fields = (
+        'first_name',
+        'last_name',
+        'email',
+        'submitted',
+    )
+    #filter for draft/published status
+    list_filter = (
+        'first_name',
+        'last_name',
+        'email',
+        'submitted',
+    )
+
 # Register your models here.
 admin.site.register(models.Post, PostAdmin)
 admin.site.register(models.Comment, CommentAdmin)

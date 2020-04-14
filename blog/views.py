@@ -61,6 +61,22 @@ class ContactFormView(CreateView):
         )
         return super().form_valid(form)
 
+class ContestFormView(CreateView):
+    form_class = forms.PhotoForm
+    template_name = 'blog/contest_form.html'
+    model = models.Contest
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        entry = form.save(commit=False)
+        entry.save()
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'Thank you for entering! Good Luck!'
+        )
+        return super().form_valid(form)
+
 class HomeView(TemplateView):
     """
     Provides templates, querysets and context for the main Homepage template

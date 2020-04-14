@@ -1,0 +1,14 @@
+<!--blog/templates/blog/contest_form.html-->
+
+{% extends "blog/base.html" %}
+
+{% block page_title %}Photo Contest!{% endblock %}
+
+{% block main %}
+
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Upload and Submit</button>
+</form>
+{% endblock %}

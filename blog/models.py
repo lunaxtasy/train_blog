@@ -10,6 +10,23 @@ from ckeditor_uploader.fields import RichTextUploadingField
         return self.filter(topics_id = name)"""
 
 # Create your models here.
+class Contest(models.Model):
+    """
+    Gets contest entry
+    """
+
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField()
+    photo = models.ImageField(upload_to="images/")
+    submitted = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering=['-submitted']
+
+    def __str__(self):
+        return f'{self.submitted.date()}: {self.email}'
+
 class Contact(models.Model):
     """
     Gets contact information from person trying to contact you
