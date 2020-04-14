@@ -3,7 +3,6 @@
 import pytest
 
 from model_mommy import mommy
-from blog.models import Topic
 
 pytestmark = pytest.mark.django_db
 
@@ -18,4 +17,4 @@ def test_topic_detail_slug_spelling(client):
     mommy.make('blog.Topic', slug='he1lo')
 
     response = client.get('/topics/hello/')
-    assert response.status_code ==200
+    assert response.status_code == 200

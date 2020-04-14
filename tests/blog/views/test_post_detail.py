@@ -1,8 +1,8 @@
 #tests/blog/views/test_post_detail.py
 
 from model_mommy import mommy
-from blog.models import Post
 import pytest
+from blog.models import Post
 
 pytestmark = pytest.mark.django_db
 

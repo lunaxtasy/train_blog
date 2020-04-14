@@ -1,14 +1,11 @@
 from django.contrib import messages
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from django.views.generic import ListView, DetailView, FormView, CreateView
+from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 from . import forms, models
 
 # Create your views here.
-"""
-
-"""
 
 class PostDetailView(DetailView):
     """

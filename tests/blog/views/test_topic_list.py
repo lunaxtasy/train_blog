@@ -2,7 +2,7 @@
 
 import pytest
 from model_mommy import mommy
-from blog.models import Post, Comment, Topic
+from blog.models import Post
 
 pytestmark = pytest.mark.django_db
 

@@ -18,7 +18,7 @@ class Contest(models.Model):
     submitted = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering=['-submitted']
+        ordering = ['-submitted']
 
     def __str__(self):
         return f'{self.submitted.date()}: {self.email}'
@@ -47,9 +47,9 @@ class Topic(models.Model):
     #Defines selected topic
     def get_absolute_url(self):
         if Post.published:
-            kwargs={'slug': self.slug}
+            kwargs = {'slug': self.slug}
         else:
-            kwargs={'pk': self.pk}
+            kwargs = {'pk': self.pk}
 
         return reverse('topic-detail', kwargs=kwargs)
 
@@ -105,7 +105,7 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         if self.published:
-            kwargs={
+            kwargs = {
                 'year': self.published.year,
                 'month': self.published.month,
                 'day': self.published.day,

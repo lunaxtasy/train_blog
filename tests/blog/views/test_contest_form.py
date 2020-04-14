@@ -1,8 +1,8 @@
+from io import BytesIO
 import pytest
 
-from blog.models import Contest
-from io import BytesIO
 from PIL import Image
+from blog.models import Contest
 
 pytestmark = pytest.mark.django_db
 

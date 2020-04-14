@@ -1,9 +1,8 @@
-from model_mommy import mommy
-from django.db.models import Count
 import datetime as dt
+from model_mommy import mommy
 import pytest
 
-from blog.models import Post, Comment, Topic
+from blog.models import Post
 
 pytestmark = pytest.mark.django_db
 
