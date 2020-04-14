@@ -5,14 +5,10 @@ from django.db.models import Count
 from django.urls import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
 
-"""class TopicQuerySet(models.QuerySet):
-    def get_topics(self):
-        return self.filter(topics_id = name)"""
-
 # Create your models here.
 class Contest(models.Model):
     """
-    Gets contest entry
+    Gets contest entry include image upload
     """
 
     first_name = models.CharField(max_length=50)

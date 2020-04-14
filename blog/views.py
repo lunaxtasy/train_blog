@@ -44,6 +44,9 @@ class TopicDetailView(DetailView):
         return obj
 
 class ContactFormView(CreateView):
+    """
+    Creates a form for entering in contact information to submit
+    """
     model = models.Contact
     success_url = reverse_lazy('home')
     fields = [
@@ -54,6 +57,9 @@ class ContactFormView(CreateView):
     ]
 
     def form_valid(self, form):
+        """
+        Contact form validation
+        """
         messages.add_message(
             self.request,
             messages.SUCCESS,
@@ -62,11 +68,18 @@ class ContactFormView(CreateView):
         return super().form_valid(form)
 
 class ContestFormView(CreateView):
+    """
+    Creates a form for entering in contest information and uploading an image
+    to submit
+    """
     form_class = forms.PhotoForm
     template_name = 'blog/contest_form.html'
     model = models.Contest
     success_url = reverse_lazy('home')
 
+    """
+    Entry form validation
+    """
     def form_valid(self, form):
         entry = form.save(commit=False)
         entry.save()

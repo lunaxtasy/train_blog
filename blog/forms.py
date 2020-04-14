@@ -4,6 +4,9 @@ from django import forms
 from . import models
 
 class ExampleSignupForm(forms.Form):
+    """
+    From Module 6 notes
+    """
     first_name = forms.CharField(label='First name', max_length=50)
     last_name = forms.CharField(label='Last name', max_length=50)
     email = forms.EmailField()
@@ -23,6 +26,9 @@ class ExampleSignupForm(forms.Form):
     )
 
 class PhotoForm(forms.ModelForm):
+    """
+    Get image upload submission
+    """
     first_name = forms.CharField(label='First name', max_length=50)
     last_name = forms.CharField(label='Last name', max_length=50)
     email = forms.EmailField()
