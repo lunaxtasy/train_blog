@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db.models import Sum, Q
 
 from blog.models import Comment, Post
+from django.apps import apps
 
 User = get_user_model()
 
@@ -56,7 +57,7 @@ def question_6_get_approved_comments_from_queryset():
     Original attempt: Comment = apps.get_model('blog', 'Comment')
     return Comment.objects.approved()
     """
-    approved = blog.apps.get_model('blog', 'Comment')
+    approved = apps.get_model('blog', 'Comment')
     return Comment.objects.approved()
 
 

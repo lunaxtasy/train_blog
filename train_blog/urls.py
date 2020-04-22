@@ -50,4 +50,5 @@ urlpatterns = [
     path('contact/', views.ContactFormView.as_view(), name='contact'),
     path('contest/', views.ContestFormView.as_view(), name='contest'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('api/', include('api.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

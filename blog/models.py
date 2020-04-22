@@ -89,6 +89,13 @@ class PostQuerySet(models.QuerySet):
     def get_topics(self):
         return Topic.objects.annotate(topic_count=Count('blogtopic')).order_by('-topic_count') #.distinct() #.values_list('blogtopic', flat=True)
 
+class CommentQuerySet(models.QuerySet):
+    """
+    Querysets for accessing Comment data
+    """
+    def approved(self):
+        return self.filter(approved=True)
+
 class Post(models.Model):
     """
     Defines layout for a blog post. Pulled from course notes
@@ -205,6 +212,8 @@ class Comment(models.Model):
     #Date/time comment has been updated
     updated = models.DateTimeField(auto_now=True)
 
+    objects = CommentQuerySet.as_manager()
+
     class Sorting:
         """
         Sets order to reverse chronogical creation date
@@ -215,4 +224,4 @@ class Comment(models.Model):
         """
         str() customisation
         """
-        return 'Comment by ' + self.name
+        return f'Comment by {self.name}'

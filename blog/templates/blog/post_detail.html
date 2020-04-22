@@ -20,5 +20,23 @@
   {% endif %}
   <p>
   <section class="content">{{ post.content|safe }}</section>
+  <p>
+  <section class="comments">
+    {% if comments %}
+      <h3>Latest comments</h3>
+      {% for comment in comments %}
+        <div class="comment">
+          <span class="by-line">By {{ comment.name }} <time>{{ comment.created }}</time></span>
+          {{ comment.text|linebreaks }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <h3>Leave a comment</h3>
+    {# Alias the variable for the included template #}
+    {% with form=comment_form %}
+      {% include "blog/comment_form.html" %}
+    {% endwith %}
+  </section>
 </article>
 {% endblock %}

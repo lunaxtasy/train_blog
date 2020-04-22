@@ -161,6 +161,18 @@ form .errorlist {
   margin: 1rem 0;
 }
 
+/* Comments */
+.comments {
+  border-top: 1px solid #eee;
+  font-size: 0.8rem;
+  margin-top: 5rem;
+}
+
+.comments .by-line {
+  color: #666;
+  font-weight: 600;
+}
+
 /* stylises main content */
 #main-content {
   margin-top: 1rem;
